@@ -8,14 +8,9 @@ using System.Threading.Tasks;
 
 namespace Locadão.Infra.Repository.Clientes
 {
-    public class ClienteRepository : IClienteRepository
+    public class ClienteRepository(LocadaoDbContext context) : IClienteRepository
     {
-        private readonly LocadaoDbContext _context;
-
-        public ClienteRepository(LocadaoDbContext context)
-        {
-            _context = context;
-        }
+        private readonly LocadaoDbContext _context = context;
 
         public async Task<IEnumerable<Cliente>> GetAllAsync()
         {
