@@ -1,0 +1,31 @@
+## Ignorar pasta .vs
+.vs/
+
+## Ignorar arquivos de compilação
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+## Ignorar arquivos de pacotes NuGet
+packages/
+
+## Ignorar arquivos de backup criados pelo Visual Studio
+*.[Bb]ak
+
+## Ignorar arquivos temporários
+*.[Tt]mp
+*.[Tt]mp_proj
+
+## Ignorar arquivos de cache do usuário do Visual Studio
+*.user
+*.userosscache
+*.suo
+
+## Ignorar arquivos de configuração do Docker
+**/.dockerignore
+**/Dockerfile
+docker-compose*.yml
+
+## Arquivos específicos de projeto que podem conter informações sensíveis
+appsettings.json
+appsettings.Development.json
