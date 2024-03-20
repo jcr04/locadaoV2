@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locadão.Application.Commands;
+namespace Locadão.Application.Handlers;
 
 public class DeleteClienteCommandHandler : ICommandHandler<DeleteClienteCommand>
 {
