@@ -22,10 +22,11 @@ namespace Locadão.Infra.Repository.Clientes
             return await _context.Clientes.FindAsync(id);
         }
 
-        public async Task AddAsync(Cliente cliente)
+        public async Task<Cliente> AddAsync(Cliente cliente)
         {
-            _context.Clientes.Add(cliente);
+            await _context.Clientes.AddAsync(cliente);
             await _context.SaveChangesAsync();
+            return cliente;
         }
 
         public async Task UpdateAsync(Cliente cliente)

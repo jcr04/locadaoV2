@@ -7,6 +7,8 @@ using locadao.Infrastructure;
 using Locadão.Application.Handlers;
 using Locadao.Application.Interfaces.Commands;
 using Locadão.Infra.Repository.Clientes;
+using Locadao.Application.Interfaces.Queries;
+using Locadão.Application.Queries;
 
 internal class Program
 {
@@ -25,8 +27,9 @@ internal class Program
         // builder.Services.AddScoped, .AddTransient, .AddSingleton, etc.
         builder.Services.AddTransient<ICommandHandler<CreateClienteCommand>, CreateClienteCommandHandler>();
         builder.Services.AddTransient<ICommandHandler<UpdateClienteCommand>, UpdateClienteCommandHandler>();
-        builder.Services.AddTransient<ICommandHandler<DeleteClienteCommand>, DeleteClienteCommandHandler>();
+        builder.Services.AddTransient<ICommandHandlerDelete<DeleteClienteCommand>, DeleteClienteCommandHandler>();
         builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+        builder.Services.AddScoped<IClienteQueryService, ClienteQueryService>();
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

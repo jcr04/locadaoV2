@@ -18,7 +18,7 @@ public class CreateClienteCommandHandler : ICommandHandler<CreateClienteCommand>
         _clienteRepository = clienteRepository;
     }
 
-    public async Task HandleAsync(CreateClienteCommand command)
+    public async Task<Guid> HandleAsync(CreateClienteCommand command)
     {
         var cliente = new Cliente
         {
@@ -32,5 +32,6 @@ public class CreateClienteCommandHandler : ICommandHandler<CreateClienteCommand>
         };
 
         await _clienteRepository.AddAsync(cliente);
+        return cliente.Id;
     }
 }

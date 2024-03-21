@@ -1,9 +1,6 @@
 ﻿using Locadao.Application.Interfaces.Commands;
 using Locadão.Infra.Repository.Clientes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Locadão.Application.Handlers;
@@ -17,7 +14,7 @@ public class UpdateClienteCommandHandler : ICommandHandler<UpdateClienteCommand>
         _clienteRepository = clienteRepository;
     }
 
-    public async Task HandleAsync(UpdateClienteCommand command)
+    public async Task<Guid> HandleAsync(UpdateClienteCommand command)
     {
         var cliente = await _clienteRepository.GetByIdAsync(command.Id);
 
@@ -30,5 +27,11 @@ public class UpdateClienteCommandHandler : ICommandHandler<UpdateClienteCommand>
 
             await _clienteRepository.UpdateAsync(cliente);
         }
+        else
+        {
+            throw new KeyNotFoundException("Cliente não encontrado.");
+        }
+
+        return command.Id;
     }
 }

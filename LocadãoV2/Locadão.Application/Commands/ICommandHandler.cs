@@ -2,6 +2,6 @@
 {
     public interface ICommandHandler<TCommand>
     {
-        Task HandleAsync(TCommand command);
+        Task<Guid> HandleAsync(TCommand command);
     }
 }

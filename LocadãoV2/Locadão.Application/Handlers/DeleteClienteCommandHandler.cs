@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Locadão.Application.Handlers;
 
-public class DeleteClienteCommandHandler : ICommandHandler<DeleteClienteCommand>
+public class DeleteClienteCommandHandler : ICommandHandlerDelete<DeleteClienteCommand>
 {
     private readonly IClienteRepository _clienteRepository;
 

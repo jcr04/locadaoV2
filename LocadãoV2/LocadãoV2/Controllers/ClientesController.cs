@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Locadao.Application.Interfaces.Commands;
 using System.Net;
+using Locadao.Application.Interfaces.Queries;
+using Locadão.Application.Queries;
 
 namespace Locadão.Api.Controllers;
 
@@ -9,15 +11,18 @@ namespace Locadão.Api.Controllers;
 public class ClientesController : ControllerBase
 {
     private readonly ICommandHandler<CreateClienteCommand> _createClienteHandler;
+    private readonly IClienteQueryService _clienteQueryService;
     private readonly ICommandHandler<UpdateClienteCommand> _updateClienteHandler;
-    private readonly ICommandHandler<DeleteClienteCommand> _deleteClienteHandler;
+    private readonly ICommandHandlerDelete<DeleteClienteCommand> _deleteClienteHandler;
 
     public ClientesController(
         ICommandHandler<CreateClienteCommand> createClienteHandler,
+        IClienteQueryService clienteQueryService,
         ICommandHandler<UpdateClienteCommand> updateClienteHandler,
-        ICommandHandler<DeleteClienteCommand> deleteClienteHandler)
+        ICommandHandlerDelete<DeleteClienteCommand> deleteClienteHandler)
     {
         _createClienteHandler = createClienteHandler;
+        _clienteQueryService = clienteQueryService;
         _updateClienteHandler = updateClienteHandler;
         _deleteClienteHandler = deleteClienteHandler;
     }
@@ -25,14 +30,25 @@ public class ClientesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateClienteCommand command)
     {
-        await _createClienteHandler.HandleAsync(command);
-        return StatusCode(201);
+        var createdClienteId = await _createClienteHandler.HandleAsync(command);
+        var cliente = await _clienteQueryService.GetClienteByIdAsync(createdClienteId);
+
+        return Ok(cliente);
     }
+
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        return Ok();
+        var cliente = await _clienteQueryService.GetClienteByIdAsync(id);
+        if (cliente != null)
+        {
+            return Ok(cliente);
+        }
+        else
+        {
+            return NotFound();
+        }
     }
 
     [HttpPut("{id}")]
@@ -44,8 +60,11 @@ public class ClientesController : ControllerBase
         }
 
         await _updateClienteHandler.HandleAsync(command);
-        return NoContent();
+
+        var clienteAtualizado = await _clienteQueryService.GetClienteByIdAsync(id);
+        return Ok(clienteAtualizado);
     }
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
