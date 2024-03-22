@@ -14,6 +14,9 @@ using Locadão.Infra.Repository.Veiculos;
 using Locadao.Application.Commands.Agencias;
 using Locadão.Application.Handlers.Agencias;
 using Locadão.Infra.Repository.Agencias;
+using Locadão.Infra.Repository.Alugueis;
+using Locadão.Application.Commands;
+using Locadao.Application.Queries;
 
 internal class Program
 {
@@ -51,7 +54,11 @@ internal class Program
         builder.Services.AddScoped<IAgenciaRepository, AgenciaRepository>();
         builder.Services.AddScoped<IAgenciaQueryService, AgenciaQueryService>();
 
-
+        //aluguel
+        builder.Services.AddTransient<ICommandHandler<CreateAluguelCommand>, CreateAluguelCommandHandler>();
+        builder.Services.AddTransient<ICommandHandlerDelete<DeleteAluguelCommand>, DeleteAluguelCommandHandler>();
+        builder.Services.AddScoped<IAluguelRepository, AluguelRepository>();
+        builder.Services.AddScoped<IAluguelQueryService, AluguelQueryService>();
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
