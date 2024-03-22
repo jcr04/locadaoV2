@@ -54,3 +54,7 @@ A API está documentada com Swagger, e você pode acessá-la navegando para `htt
 - `POST /api/Agencias` - Cria uma nova agência
 - `DELETE /api/Agencias/{id}` - Remove uma agência pelo ID
 
+- **Aluguel**
+-  `GET /api/Alugueis` - Lista todos os Alugueis
+-  `POST /api/Alugueis` - Cria um novo Aluguel
+- `DELETE /api/ALUgueis/{id}` - Remove um Aluguel pelo ID
