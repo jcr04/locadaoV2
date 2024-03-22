@@ -21,7 +21,6 @@ namespace locadao.Domain.Models
         [Phone]
         public string Telefone { get; set; }
 
-        // Lista de veículos disponíveis nesta agência
         public List<Veiculo> Veiculos { get; set; }
 
         public List<Aluguel> Alugueis { get; set; }

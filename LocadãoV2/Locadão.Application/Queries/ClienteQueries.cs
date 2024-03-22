@@ -1,8 +1,4 @@
-﻿using locadao.Domain.Models;
-using System;
-using System.Collections.Generic;
-
-namespace Locadao.Application.Interfaces.Queries;
+﻿namespace Locadao.Application.Interfaces.Queries;
 
 public class GetClienteByIdQuery
 {

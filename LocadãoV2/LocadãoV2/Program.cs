@@ -9,6 +9,11 @@ using Locadao.Application.Interfaces.Commands;
 using Locadão.Infra.Repository.Clientes;
 using Locadao.Application.Interfaces.Queries;
 using Locadão.Application.Queries;
+using Locadao.Application.Commands.Veiculos;
+using Locadão.Infra.Repository.Veiculos;
+using Locadao.Application.Commands.Agencias;
+using Locadão.Application.Handlers.Agencias;
+using Locadão.Infra.Repository.Agencias;
 
 internal class Program
 {
@@ -25,11 +30,28 @@ internal class Program
 
         // Adiciona os demais serviços necessários
         // builder.Services.AddScoped, .AddTransient, .AddSingleton, etc.
+        
+        //Cliente
         builder.Services.AddTransient<ICommandHandler<CreateClienteCommand>, CreateClienteCommandHandler>();
         builder.Services.AddTransient<ICommandHandler<UpdateClienteCommand>, UpdateClienteCommandHandler>();
         builder.Services.AddTransient<ICommandHandlerDelete<DeleteClienteCommand>, DeleteClienteCommandHandler>();
         builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
         builder.Services.AddScoped<IClienteQueryService, ClienteQueryService>();
+        
+        //Veiculo
+        builder.Services.AddTransient<ICommandHandler<CreateVeiculoCommand>, CreateVeiculoCommandHandler>();
+        builder.Services.AddScoped<ICommandHandler<UpdateVeiculoCommand>, UpdateVeiculoCommandHandler>();
+        builder.Services.AddScoped<ICommandHandlerDelete<DeleteVeiculoCommand>, DeleteVeiculoCommandHandler>();
+        builder.Services.AddScoped<IVeiculoRepository, VeiculoRepository>();
+        builder.Services.AddScoped<IVeiculoQueryService, VeiculoQueryService>();
+
+        //Agencia
+        builder.Services.AddTransient<ICommandHandler<CreateAgenciaCommand>, CreateAgenciaCommandHandler>();
+        builder.Services.AddTransient<ICommandHandlerDelete<DeleteAgenciaCommand>, DeleteAgenciaCommandHandler>();
+        builder.Services.AddScoped<IAgenciaRepository, AgenciaRepository>();
+        builder.Services.AddScoped<IAgenciaQueryService, AgenciaQueryService>();
+
+
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
