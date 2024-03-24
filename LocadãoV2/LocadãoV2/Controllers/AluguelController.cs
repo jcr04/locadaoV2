@@ -27,8 +27,8 @@ public class AlugueisController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateAluguelCommand command)
     {
         var aluguelId = await _createAluguelHandler.HandleAsync(command);
-        var aluguel = await _aluguelQueryService.GetAluguelByIdAsync(aluguelId);
-        return CreatedAtAction(nameof(GetById), new { id = aluguelId }, aluguel);
+        var aluguelDto = await _aluguelQueryService.GetAluguelByIdAsync(aluguelId);
+        return CreatedAtAction(nameof(GetById), new { id = aluguelId }, aluguelDto);
     }
 
     [HttpDelete("{id}")]
@@ -42,12 +42,12 @@ public class AlugueisController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var aluguel = await _aluguelQueryService.GetAluguelByIdAsync(id);
-        if (aluguel == null)
+        var aluguelDto = await _aluguelQueryService.GetAluguelByIdAsync(id);
+        if (aluguelDto == null)
         {
             return NotFound();
         }
 
-        return Ok(aluguel);
+        return Ok(aluguelDto);
     }
 }

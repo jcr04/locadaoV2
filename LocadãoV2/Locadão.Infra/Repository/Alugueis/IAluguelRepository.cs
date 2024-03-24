@@ -9,5 +9,7 @@ namespace Locadão.Infra.Repository.Alugueis
         Task<Aluguel> AddAsync(Aluguel aluguel);
         Task DeleteAsync(Guid id);
         Task<Aluguel> GetAluguelByIdAsync(Guid id);
+        Task<bool> IsVeiculoAlugadoAsync(Guid veiculoId);
+        Task<List<Aluguel>> GetAlugueisByAgenciaAsync(Guid agenciaId);
     }
 }

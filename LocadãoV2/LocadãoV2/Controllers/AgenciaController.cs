@@ -27,9 +27,9 @@ namespace Locadão.Api.Controllers
         public async Task<IActionResult> Create(CreateAgenciaCommand command)
         {
             var agenciaId = await _createAgenciaHandler.HandleAsync(command);
-            var agencia = await _agenciaQueryService.GetAgenciaByIdAsync(agenciaId);
+            var agenciaDto = await _agenciaQueryService.GetAgenciaByIdAsync(agenciaId);
 
-            return CreatedAtAction(nameof(GetById), new { id = agenciaId }, agencia);
+            return CreatedAtAction(nameof(GetById), new { id = agenciaId }, agenciaDto);
         }
 
         [HttpDelete("{id}")]
@@ -44,13 +44,32 @@ namespace Locadão.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var agencia = await _agenciaQueryService.GetAgenciaByIdAsync(id);
-            if (agencia == null)
+            var agenciaDto = await _agenciaQueryService.GetAgenciaByIdAsync(id);
+            if (agenciaDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(agencia);
+
+            var countVeiculos = await _agenciaQueryService.CountVeiculosByAgenciaAsync(id);
+            var alugueis = await _agenciaQueryService.GetAlugueisByAgenciaAsync(id);
+
+            var result = new
+            {
+                Agencia = agenciaDto,
+                NumeroVeiculos = countVeiculos,
+                Alugueis = alugueis.Select(a => new
+                {
+                    a.Id,
+                    a.DataInicio,
+                    a.DataFim,
+                    a.Valor,
+                    a.Status,
+                    Veiculo = new { a.Veiculo.Marca, a.Veiculo.Modelo, a.Veiculo.Placa }
+                })
+            };
+
+            return Ok(result);
         }
     }
 }

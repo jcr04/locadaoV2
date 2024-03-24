@@ -31,25 +31,24 @@ public class ClientesController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateClienteCommand command)
     {
         var createdClienteId = await _createClienteHandler.HandleAsync(command);
-        var cliente = await _clienteQueryService.GetClienteByIdAsync(createdClienteId);
+        var clienteDto = await _clienteQueryService.GetClienteByIdAsync(createdClienteId);
 
-        return Ok(cliente);
+        return Ok(clienteDto);
     }
 
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var cliente = await _clienteQueryService.GetClienteByIdAsync(id);
-        if (cliente != null)
-        {
-            return Ok(cliente);
-        }
-        else
+        var clienteDto = await _clienteQueryService.GetClienteByIdAsync(id);
+        if (clienteDto == null)
         {
             return NotFound();
         }
+
+        return Ok(clienteDto);
     }
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateClienteCommand command)

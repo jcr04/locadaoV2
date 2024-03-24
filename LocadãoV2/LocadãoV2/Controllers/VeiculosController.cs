@@ -30,16 +30,16 @@ namespace Locadão.Api.Controllers
         public async Task<IActionResult> Create([FromBody] CreateVeiculoCommand command)
         {
             var veiculoId = await _createVeiculoHandler.HandleAsync(command);
-            var veiculo = await _veiculoQueryService.GetVeiculoByIdAsync(veiculoId);
-            return CreatedAtAction(nameof(GetById), new { id = veiculoId }, veiculo);
+            var veiculoDto = await _veiculoQueryService.GetVeiculoByIdAsync(veiculoId);
+            return CreatedAtAction(nameof(GetById), new { id = veiculoId }, veiculoDto);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var veiculo = await _veiculoQueryService.GetVeiculoByIdAsync(id);
-            if (veiculo == null) return NotFound();
-            return Ok(veiculo);
+            var veiculoDto = await _veiculoQueryService.GetVeiculoByIdAsync(id);
+            if (veiculoDto == null) return NotFound();
+            return Ok(veiculoDto);
         }
 
         [HttpPut("{id}")]

@@ -1,0 +1,9 @@
+﻿public class AluguelDTO
+{
+    public Guid Id { get; set; }
+    public DateTime DataInicio { get; set; }
+    public DateTime DataFim { get; set; }
+    public decimal Valor { get; set; }
+    public string Status { get; set; }
+    // Adicione outras propriedades conforme necessário
+}

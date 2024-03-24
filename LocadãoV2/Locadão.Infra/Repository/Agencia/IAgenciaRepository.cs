@@ -9,5 +9,6 @@ public interface IAgenciaRepository
     Task<Agencia> AddAsync(Agencia agencia);
 
     Task DeleteAsync(Guid id);
-
+    Task<int> CountVeiculosByAgenciaAsync(Guid agenciaId);
+    Task<List<Aluguel>> GetAlugueisByAgenciaAsync(Guid agenciaId);
 }

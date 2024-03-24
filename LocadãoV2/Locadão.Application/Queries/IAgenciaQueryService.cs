@@ -7,6 +7,8 @@ namespace Locadão.Application.Queries
 {
     public interface IAgenciaQueryService
     {
-        Task<Agencia> GetAgenciaByIdAsync(Guid id);
+        Task<AgenciaDTO> GetAgenciaByIdAsync(Guid id);
+        Task<int> CountVeiculosByAgenciaAsync(Guid agenciaId);
+        Task<List<Aluguel>> GetAlugueisByAgenciaAsync(Guid agenciaId);
     }
 }

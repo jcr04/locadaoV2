@@ -1,4 +1,5 @@
 ﻿using locadao.Domain.Models;
+using Locadão.Domain.models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Locadão.Application.Queries
 {
     public interface IVeiculoQueryService
     {
-        Task<Veiculo> GetVeiculoByIdAsync(Guid id);
+        Task<VeiculoDTO> GetVeiculoByIdAsync(Guid id);
     }
 }

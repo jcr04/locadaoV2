@@ -12,5 +12,7 @@ namespace Locadão.Infra.Repository.Veiculos
         Task<Veiculo> AddAsync(Veiculo veiculo);
         Task UpdateAsync(Veiculo veiculo);
         Task DeleteAsync(Guid id);
+        Task<Veiculo> GetByPlacaAsync(string placa);
+        Task<bool> PlacaExistsAsync(string placa);
     }
 }

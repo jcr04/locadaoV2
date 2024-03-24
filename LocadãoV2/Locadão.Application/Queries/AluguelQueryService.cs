@@ -16,8 +16,23 @@ public class AluguelQueryService : IAluguelQueryService
         _aluguelRepository = aluguelRepository;
     }
 
-    public async Task<Aluguel> GetAluguelByIdAsync(Guid id)
+    public async Task<AluguelDTO> GetAluguelByIdAsync(Guid id)
     {
-        return await _aluguelRepository.GetAluguelByIdAsync(id);
+        var aluguel = await _aluguelRepository.GetAluguelByIdAsync(id);
+        if (aluguel == null)
+        {
+            return null;
+        }
+
+        return new AluguelDTO
+        {
+            Id = aluguel.Id,
+            DataInicio = aluguel.DataInicio,
+            DataFim = aluguel.DataFim,
+            Valor = aluguel.Valor,
+            Status = aluguel.Status
+            // Adicione outras propriedades conforme necessário
+        };
     }
 }
+

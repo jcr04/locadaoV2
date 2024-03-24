@@ -33,9 +33,23 @@ public class AluguelRepository : IAluguelRepository
     public async Task<Aluguel> GetAluguelByIdAsync(Guid id)
     {
         return await _context.Alugueis
-            .Include(aluguel => aluguel.Cliente)
-            .Include(aluguel => aluguel.Veiculo)
-            .Include(aluguel => aluguel.Agencia)
-            .FirstOrDefaultAsync(aluguel => aluguel.Id == id);
+                            .Include(aluguel => aluguel.Cliente)
+                            .Include(aluguel => aluguel.Veiculo)
+                            .Include(aluguel => aluguel.Agencia)
+                            .FirstOrDefaultAsync(aluguel => aluguel.Id == id);
     }
+    public async Task<bool> IsVeiculoAlugadoAsync(Guid veiculoId)
+    {
+        return await _context.Alugueis.AnyAsync(a => a.VeiculoId == veiculoId && a.Status == "Ativo");
+    }
+
+    public async Task<List<Aluguel>> GetAlugueisByAgenciaAsync(Guid agenciaId)
+    {
+        return await _context.Alugueis
+                            .Include(a => a.Veiculo)
+                            .Include(a => a.Cliente)
+                            .Where(a => a.AgenciaId == agenciaId)
+                            .ToListAsync();
+    }
+
 }

@@ -8,6 +8,6 @@ namespace Locadão.Application.Queries
 {
     public interface IAluguelQueryService
     {
-        Task<Aluguel> GetAluguelByIdAsync(Guid id);
+        Task<AluguelDTO> GetAluguelByIdAsync(Guid id);
     }
 }

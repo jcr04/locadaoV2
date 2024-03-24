@@ -1,9 +1,10 @@
 ﻿using locadao.Domain.Models;
+using Locadão.Domain.models.DTOs;
 
 namespace Locadao.Application.Interfaces.Queries
 {
     public interface IClienteQueryService
     {
-        Task<Cliente> GetClienteByIdAsync(Guid id);
+        Task<ClienteDTO> GetClienteByIdAsync(Guid id);
     }
 }

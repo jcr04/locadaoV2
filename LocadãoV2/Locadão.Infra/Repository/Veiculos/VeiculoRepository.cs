@@ -47,5 +47,19 @@ namespace Locadão.Infra.Repository.Veiculos
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<Veiculo> GetByPlacaAsync(string placa)
+        {
+            Veiculo? veiculo = await _context.Veiculos
+                                             .AsNoTracking()
+                                             .FirstOrDefaultAsync(v => v.Placa == placa);
+            return veiculo;
+        }
+
+        public async Task<bool> PlacaExistsAsync(string placa)
+        {
+            return await _context.Veiculos.AnyAsync(v => v.Placa == placa);
+        }
+
     }
 }
