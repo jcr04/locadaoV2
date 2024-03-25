@@ -1,5 +1,4 @@
-﻿using Locadao.Application.Interfaces.Queries;
-using locadao.Domain.Models;
+﻿using locadao.Domain.Models;
 using Locadão.Infra.Repository.Clientes;
 using Locadão.Domain.models.DTOs;
 

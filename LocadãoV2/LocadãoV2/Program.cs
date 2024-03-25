@@ -4,19 +4,16 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using System;
 using locadao.Infrastructure;
-using Locadão.Application.Handlers;
 using Locadao.Application.Interfaces.Commands;
 using Locadão.Infra.Repository.Clientes;
-using Locadao.Application.Interfaces.Queries;
-using Locadão.Application.Queries;
 using Locadao.Application.Commands.Veiculos;
 using Locadão.Infra.Repository.Veiculos;
 using Locadao.Application.Commands.Agencias;
-using Locadão.Application.Handlers.Agencias;
 using Locadão.Infra.Repository.Agencias;
 using Locadão.Infra.Repository.Alugueis;
 using Locadão.Application.Commands;
-using Locadao.Application.Queries;
+using Locadão.Application.Queries;
+using Locadão.Application.Handlers;
 
 internal class Program
 {

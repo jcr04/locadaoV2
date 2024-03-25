@@ -4,7 +4,7 @@ using locadao.Domain.Models;
 using Locadão.Infra.Repository.Agencias;
 using System.Threading.Tasks;
 
-namespace Locadão.Application.Handlers.Agencias;
+namespace Locadão.Application.Handlers;
 
 public class CreateAgenciaCommandHandler : ICommandHandler<CreateAgenciaCommand>
 {

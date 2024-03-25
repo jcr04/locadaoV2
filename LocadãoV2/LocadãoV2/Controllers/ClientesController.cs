@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Locadao.Application.Interfaces.Commands;
 using System.Net;
-using Locadao.Application.Interfaces.Queries;
 using Locadão.Application.Queries;
 
 namespace Locadão.Api.Controllers;

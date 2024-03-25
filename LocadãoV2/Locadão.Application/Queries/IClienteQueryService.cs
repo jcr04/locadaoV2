@@ -1,7 +1,7 @@
 ﻿using locadao.Domain.Models;
 using Locadão.Domain.models.DTOs;
 
-namespace Locadao.Application.Interfaces.Queries
+namespace Locadão.Application.Queries
 {
     public interface IClienteQueryService
     {

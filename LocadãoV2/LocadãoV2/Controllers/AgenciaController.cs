@@ -65,7 +65,7 @@ namespace Locadão.Api.Controllers
                     a.DataFim,
                     a.Valor,
                     a.Status,
-                    Veiculo = new { a.Veiculo.Marca, a.Veiculo.Modelo, a.Veiculo.Placa }
+                    Veiculo = new { a.Veiculo.Marca, a.Veiculo.Modelo, a.Veiculo.Placa, Agencia = a.Agencia.Nome }
                 })
             };
 

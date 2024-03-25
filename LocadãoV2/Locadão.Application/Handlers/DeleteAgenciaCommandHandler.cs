@@ -3,7 +3,7 @@ using Locadao.Application.Interfaces.Commands;
 using Locadão.Infra.Repository.Agencias;
 using System.Threading.Tasks;
 
-namespace Locadão.Application.Handlers.Agencias;
+namespace Locadão.Application.Handlers;
 
 public class DeleteAgenciaCommandHandler : ICommandHandlerDelete<DeleteAgenciaCommand>
 {

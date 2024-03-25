@@ -27,7 +27,7 @@ public class UpdateVeiculoCommandHandler : ICommandHandler<UpdateVeiculoCommand>
 
             await _veiculoRepository.UpdateAsync(veiculo);
         }
-        else 
+        else
         {
             throw new KeyNotFoundException("Veiculo não encontrado.");
         }

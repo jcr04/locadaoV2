@@ -7,7 +7,7 @@ namespace Locadão.Application.Queries
     public class AgenciaQueryService : IAgenciaQueryService
     {
         private readonly IAgenciaRepository _agenciaRepository;
-        private readonly IAluguelRepository _aluguelRepository; 
+        private readonly IAluguelRepository _aluguelRepository;
 
         public AgenciaQueryService(IAgenciaRepository agenciaRepository, IAluguelRepository aluguelRepository)
         {

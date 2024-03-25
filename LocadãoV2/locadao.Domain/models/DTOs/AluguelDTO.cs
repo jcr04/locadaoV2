@@ -5,5 +5,7 @@
     public DateTime DataFim { get; set; }
     public decimal Valor { get; set; }
     public string Status { get; set; }
-    // Adicione outras propriedades conforme necessário
+    
+    public string Agencia { get; set; }
+
 }

@@ -1,11 +1,6 @@
-﻿using Locadao.Application.Interfaces.Queries;
-using locadao.Domain.Models;
-using Locadão.Infra.Repository.Alugueis;
-using System;
-using System.Threading.Tasks;
-using Locadão.Application.Queries;
+﻿using Locadão.Infra.Repository.Alugueis;
 
-namespace Locadao.Application.Queries;
+namespace Locadão.Application.Queries;
 
 public class AluguelQueryService : IAluguelQueryService
 {
@@ -30,8 +25,8 @@ public class AluguelQueryService : IAluguelQueryService
             DataInicio = aluguel.DataInicio,
             DataFim = aluguel.DataFim,
             Valor = aluguel.Valor,
-            Status = aluguel.Status
-            // Adicione outras propriedades conforme necessário
+            Status = aluguel.Status,
+            Agencia = aluguel.Agencia.Nome
         };
     }
 }
