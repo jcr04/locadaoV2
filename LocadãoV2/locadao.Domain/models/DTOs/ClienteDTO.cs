@@ -13,6 +13,5 @@ namespace Locadão.Domain.models.DTOs
         public int Idade { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
-        // Outros detalhes que você deseja expor
     }
 }

@@ -38,6 +38,8 @@ public class Veiculo
     [Required]
     public bool DisponivelParaAluguel { get; set; }
 
+    public bool AdaptadoParaPCD { get; set; }
+
     [Required]
     public Guid AgenciaId { get; set; }
 

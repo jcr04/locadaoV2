@@ -14,6 +14,8 @@ namespace Locadão.Domain.models.DTOs
         public int AnoFabricacao { get; set; }
         public string Placa { get; set; }
         public string Cor { get; set; }
+
+        public bool AdaptadoParaPCD { get; set; }
         // Outros detalhes que você deseja expor
     }
 }

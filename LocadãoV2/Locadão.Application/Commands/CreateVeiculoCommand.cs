@@ -12,6 +12,7 @@ public class CreateVeiculoCommand
     public double Quilometragem { get; set; }
     public bool Automatico { get; set; }
     public bool DisponivelParaAluguel { get; set; }
+    public bool AdaptadoParaPCD { get; set; }
     public Guid AgenciaId { get; set; }
 }
 

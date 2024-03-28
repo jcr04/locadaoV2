@@ -61,5 +61,11 @@ namespace Locadão.Infra.Repository.Veiculos
             return await _context.Veiculos.AnyAsync(v => v.Placa == placa);
         }
 
+        public async Task<Veiculo> GetVeiculoAdaptadoDisponivelAsync(Guid agenciaId)
+        {
+            return await _context.Veiculos
+                                 .FirstOrDefaultAsync(v => v.AgenciaId == agenciaId && v.DisponivelParaAluguel && v.AdaptadoParaPCD);
+        }
+
     }
 }

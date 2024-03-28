@@ -14,5 +14,6 @@ namespace Locadão.Infra.Repository.Veiculos
         Task DeleteAsync(Guid id);
         Task<Veiculo> GetByPlacaAsync(string placa);
         Task<bool> PlacaExistsAsync(string placa);
+        Task<Veiculo> GetVeiculoAdaptadoDisponivelAsync(Guid agenciaId);
     }
 }

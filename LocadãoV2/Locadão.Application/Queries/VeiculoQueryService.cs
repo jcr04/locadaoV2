@@ -26,7 +26,8 @@ namespace Locadão.Application.Queries
                 Modelo = veiculo.Modelo,
                 AnoFabricacao = veiculo.AnoFabricacao,
                 Placa = veiculo.Placa,
-                Cor = veiculo.Cor
+                Cor = veiculo.Cor,
+                AdaptadoParaPCD = veiculo.AdaptadoParaPCD
                 // Mapeie outras propriedades conforme necessário
             };
         }

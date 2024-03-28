@@ -47,6 +47,7 @@ namespace Locadão.Application.Handlers
                 Quilometragem = command.Quilometragem,
                 Automatico = command.Automatico,
                 DisponivelParaAluguel = command.DisponivelParaAluguel,
+                AdaptadoParaPCD = command.AdaptadoParaPCD,
                 AgenciaId = command.AgenciaId
             };
 
