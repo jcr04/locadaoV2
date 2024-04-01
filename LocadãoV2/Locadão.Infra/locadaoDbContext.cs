@@ -1,4 +1,5 @@
 ﻿using locadao.Domain.Models;
+using Locadão.Domain.models;
 using Microsoft.EntityFrameworkCore;
 
 namespace locadao.Infrastructure
@@ -11,6 +12,7 @@ namespace locadao.Infrastructure
         public DbSet<Veiculo> Veiculos { get; set; }
         public DbSet<Agencia> Agencias { get; set; }
         public DbSet<Aluguel> Alugueis { get; set; }
+        public DbSet<Reserva> Reservas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,6 +38,18 @@ namespace locadao.Infrastructure
                 .HasOne(al => al.Veiculo)
                 .WithMany()
                 .HasForeignKey(al => al.VeiculoId);
+
+            modelBuilder.Entity<Reserva>()
+                .HasOne(r => r.Cliente)
+                .WithMany()
+                .HasForeignKey(r => r.ClienteId);
+
+            modelBuilder.Entity<Reserva>()
+                .HasOne(r => r.Veiculo)
+                .WithMany()
+                .HasForeignKey(r => r.VeiculoId);
+
+
         }
     }
 }

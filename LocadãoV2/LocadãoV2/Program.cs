@@ -14,6 +14,7 @@ using Locadão.Infra.Repository.Alugueis;
 using Locadão.Application.Commands;
 using Locadão.Application.Queries;
 using Locadão.Application.Handlers;
+using Locadão.Infra.Repository.Reservas;
 
 internal class Program
 {
@@ -60,6 +61,10 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        //Reserva
+        builder.Services.AddTransient<ICommandHandler<CreateReservaCommand>, CreateReservaCommandHandler>();
+        builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
+        builder.Services.AddScoped<IReservaQueryService, ReservaQueryService>();
 
 
         // Adiciona suporte a HTTPS

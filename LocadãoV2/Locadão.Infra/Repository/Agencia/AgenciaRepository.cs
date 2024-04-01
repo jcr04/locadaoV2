@@ -15,7 +15,6 @@ public class AgenciaRepository : IAgenciaRepository
         _context = context;
     }
 
-
     public async Task<Agencia> AddAsync(Agencia agencia)
     {
         await _context.Agencias.AddAsync(agencia);
@@ -31,8 +30,6 @@ public class AgenciaRepository : IAgenciaRepository
             _context.Agencias.Remove(agencia);
             await _context.SaveChangesAsync();
         }
-
-
     }
 
     public async Task<Agencia> GetAgenciaByIdAsync(Guid id)

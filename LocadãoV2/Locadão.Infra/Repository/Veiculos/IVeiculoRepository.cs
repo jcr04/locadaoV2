@@ -15,5 +15,6 @@ namespace Locadão.Infra.Repository.Veiculos
         Task<Veiculo> GetByPlacaAsync(string placa);
         Task<bool> PlacaExistsAsync(string placa);
         Task<Veiculo> GetVeiculoAdaptadoDisponivelAsync(Guid agenciaId);
+        Task<bool> VerificarDisponibilidadeAsync(Guid veiculoId, DateTime dataInicio, DateTime dataFim);
     }
 }

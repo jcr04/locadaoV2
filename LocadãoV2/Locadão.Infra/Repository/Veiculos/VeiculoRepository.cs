@@ -67,5 +67,20 @@ namespace Locadão.Infra.Repository.Veiculos
                                  .FirstOrDefaultAsync(v => v.AgenciaId == agenciaId && v.DisponivelParaAluguel && v.AdaptadoParaPCD);
         }
 
+        public async Task<bool> VerificarDisponibilidadeAsync(Guid veiculoId, DateTime dataInicio, DateTime dataFim)
+        {
+            // Verificar se existem reservas ou aluguéis que se sobrepõem às datas solicitadas para este veículo
+            var reservasExistem = await _context.Reservas.AnyAsync(r =>
+                r.VeiculoId == veiculoId &&
+                ((r.DataInicio <= dataInicio && r.DataFim >= dataInicio) || (r.DataInicio >= dataInicio && r.DataInicio <= dataFim)));
+
+            var alugueisExistem = await _context.Alugueis.AnyAsync(a =>
+                a.VeiculoId == veiculoId &&
+                ((a.DataInicio <= dataInicio && a.DataFim >= dataInicio) || (a.DataInicio >= dataInicio && a.DataInicio <= dataFim)));
+
+            // Se houver sobreposição de datas em reservas ou aluguéis, o veículo não está disponível
+            return !reservasExistem && !alugueisExistem;
+        }
+
     }
 }
