@@ -5,16 +5,16 @@ using Microsoft.Extensions.Configuration;
 using System;
 using locadao.Infrastructure;
 using Locadao.Application.Interfaces.Commands;
-using Locad„o.Infra.Repository.Clientes;
+using Locad√£o.Infra.Repository.Clientes;
 using Locadao.Application.Commands.Veiculos;
-using Locad„o.Infra.Repository.Veiculos;
+using Locad√£o.Infra.Repository.Veiculos;
 using Locadao.Application.Commands.Agencias;
-using Locad„o.Infra.Repository.Agencias;
-using Locad„o.Infra.Repository.Alugueis;
-using Locad„o.Application.Commands;
-using Locad„o.Application.Queries;
-using Locad„o.Application.Handlers;
-using Locad„o.Infra.Repository.Reservas;
+using Locad√£o.Infra.Repository.Agencias;
+using Locad√£o.Infra.Repository.Alugueis;
+using Locad√£o.Application.Commands;
+using Locad√£o.Application.Queries;
+using Locad√£o.Application.Handlers;
+using Locad√£o.Infra.Repository.Reservas;
 
 internal class Program
 {
@@ -22,14 +22,14 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Adiciona os serviÁos ao container.
+        // Adiciona os servi√ßos ao container.
         builder.Services.AddControllers();
 
         // Configura o DbContext
         builder.Services.AddDbContext<LocadaoDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-        // Adiciona os demais serviÁos necess·rios
+        // Adiciona os demais servi√ßos necess√°rios
         // builder.Services.AddScoped, .AddTransient, .AddSingleton, etc.
         
         //Cliente
@@ -58,14 +58,13 @@ internal class Program
         builder.Services.AddScoped<IAluguelRepository, AluguelRepository>();
         builder.Services.AddScoped<IAluguelQueryService, AluguelQueryService>();
 
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
         //Reserva
         builder.Services.AddTransient<ICommandHandler<CreateReservaCommand>, CreateReservaCommandHandler>();
         builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
         builder.Services.AddScoped<IReservaQueryService, ReservaQueryService>();
-
+        
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
         // Adiciona suporte a HTTPS
         builder.Services.AddHttpsRedirection(options =>
