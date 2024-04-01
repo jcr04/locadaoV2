@@ -58,3 +58,8 @@ A API está documentada com Swagger, e você pode acessá-la navegando para `htt
 -  `GET /api/Alugueis` - Lista todos os Alugueis
 -  `POST /api/Alugueis` - Cria um novo Aluguel
 - `DELETE /api/ALUgueis/{id}` - Remove um Aluguel pelo ID
+
+- **Reservas** 
+- `GET /api/Reservas` - Lista todas as reservas
+- `GET /api/Reservas/{id}` - Consulta detalhes de uma reserva específica
+- `POST /api/Reservas` - Cria uma nova reserva
