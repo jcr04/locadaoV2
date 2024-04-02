@@ -48,6 +48,15 @@ namespace Locadão.Infra.Repository.Reservas
             }
         }
 
-        // Implementar outros métodos conforme necessário
+        public async Task<Reserva> UpdateReservaAsync(Reserva updatedReserva)
+        {
+            var reserva = await _context.Reservas.FindAsync(updatedReserva.Id);
+            if (reserva != null)
+            {
+                _context.Entry(reserva).CurrentValues.SetValues(updatedReserva);
+                await _context.SaveChangesAsync();
+            }
+            return reserva;
+        }
     }
 }

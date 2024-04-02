@@ -12,14 +12,16 @@ public class ReservasController : ControllerBase
 {
     private readonly IReservaQueryService _reservaQueryService;
     private readonly ICommandHandler<CreateReservaCommand> _createReservaHandler;
-    // Adicione handlers para outros comandos conforme necessário, por exemplo, CancelarReservaCommand
+    private readonly ICommandHandler<UpdateReservaCommand> _updateReservaHandler;
 
     public ReservasController(
         IReservaQueryService reservaQueryService,
-        ICommandHandler<CreateReservaCommand> createReservaHandler)
+        ICommandHandler<CreateReservaCommand> createReservaHandler,
+        ICommandHandler<UpdateReservaCommand> updateReservaHandler)
     {
         _reservaQueryService = reservaQueryService;
         _createReservaHandler = createReservaHandler;
+        _updateReservaHandler = updateReservaHandler;
         // Inicialize outros handlers aqui
     }
 
@@ -46,5 +48,24 @@ public class ReservasController : ControllerBase
         return Ok(reserva);
     }
 
-    // Adicione endpoints para outras operações, como cancelar reserva, listar reservas de um cliente, etc.
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateReservaCommand command)
+    {
+        if (id != command.ReservaId)
+        {
+            return BadRequest("O ID da reserva na URL é diferente do corpo da requisição.");
+        }
+
+        try
+        {
+            await _updateReservaHandler.HandleAsync(command);
+            var reservaAtualizada = await _reservaQueryService.GetReservaByIdAsync(id);
+            return Ok(reservaAtualizada);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
 }

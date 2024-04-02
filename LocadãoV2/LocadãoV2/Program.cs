@@ -60,6 +60,7 @@ internal class Program
 
         //Reserva
         builder.Services.AddTransient<ICommandHandler<CreateReservaCommand>, CreateReservaCommandHandler>();
+        builder.Services.AddTransient<ICommandHandler<UpdateReservaCommand>, UpdateReservaCommandHandler>();
         builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
         builder.Services.AddScoped<IReservaQueryService, ReservaQueryService>();
         
