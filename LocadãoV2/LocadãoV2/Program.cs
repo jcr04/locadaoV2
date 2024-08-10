@@ -67,18 +67,31 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        // Adiciona suporte a HTTPS
+        // adiciona suporte a https
+
         builder.Services.AddHttpsRedirection(options =>
         {
             options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-            options.HttpsPort = 5001;
+            options.HttpsPort = 44351; // Porta SSL que você mencionou
         });
 
+        // Adiciona o CORS
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+        });
 
         var app = builder.Build();
 
         app.UseSwagger();
         app.UseSwaggerUI();
+        app.UseCors("AllowAllOrigins");
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
