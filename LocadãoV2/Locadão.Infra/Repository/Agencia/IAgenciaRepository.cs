@@ -6,6 +6,8 @@ public interface IAgenciaRepository
 {
     Task<Agencia> GetAgenciaByIdAsync(Guid id);
 
+    Task<List<Agencia>> GetAllAgenciasAsync();
+
     Task<Agencia> AddAsync(Agencia agencia);
 
     Task DeleteAsync(Guid id);

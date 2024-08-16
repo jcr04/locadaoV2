@@ -2,6 +2,7 @@
 using Locadao.Application.Commands.Agencias;
 using Locadao.Application.Interfaces.Commands;
 using Locadão.Application.Queries;
+using Microsoft.EntityFrameworkCore;
 
 namespace Locadão.Api.Controllers
 {
@@ -71,5 +72,17 @@ namespace Locadão.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetAllAgenciaIds()
+        {
+            var agencias = await _agenciaQueryService.GetAllAgenciasAsync();
+
+            var agenciaIds = agencias.Select(a => a.Id).ToList();
+
+            return Ok(agenciaIds);
+        }
+
     }
 }

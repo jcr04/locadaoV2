@@ -37,6 +37,11 @@ public class AgenciaRepository : IAgenciaRepository
         return await _context.Agencias.FindAsync(id);
     }
 
+    public async Task<List<Agencia>> GetAllAgenciasAsync()
+    {
+        return await _context.Agencias.ToListAsync();
+    }
+
     public async Task<int> CountVeiculosByAgenciaAsync(Guid agenciaId)
     {
         return await _context.Veiculos.CountAsync(v => v.AgenciaId == agenciaId);

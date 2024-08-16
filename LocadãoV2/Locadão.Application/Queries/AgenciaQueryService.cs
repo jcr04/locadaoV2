@@ -46,6 +46,27 @@ namespace Locadão.Application.Queries
             return agenciaDto;
         }
 
+        public async Task<List<AgenciaDTO>> GetAllAgenciasAsync()
+        {
+            var agencias = await _agenciaRepository.GetAllAgenciasAsync();
+
+            return agencias.Select(agencia => new AgenciaDTO
+            {
+                Id = agencia.Id,
+                Nome = agencia.Nome,
+                Endereco = agencia.Endereco,
+                Telefone = agencia.Telefone,
+                NumeroVeiculos = agencia.Veiculos.Count,
+                Alugueis = agencia.Alugueis.Select(a => new AluguelDTO
+                {
+                    Id = a.Id,
+                    DataInicio = a.DataInicio,
+                    DataFim = a.DataFim,
+                    Valor = a.Valor,
+                    Status = a.Status
+                }).ToList()
+            }).ToList();
+        }
 
         public async Task<int> CountVeiculosByAgenciaAsync(Guid agenciaId)
         {
