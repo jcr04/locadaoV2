@@ -31,4 +31,17 @@ public class ClienteQueryService : IClienteQueryService
             // Mapeie outros campos conforme necessário
         };
     }
+    public async Task<IEnumerable<ClienteDTO>> GetClientesDisponiveisAsync()
+    {
+        var clientes = await _clienteRepository.GetClientesDisponiveisAsync();
+        return clientes.Select(cliente => new ClienteDTO
+        {
+            Id = cliente.Id,
+            Nome = cliente.Nome,
+            Idade = cliente.Idade,
+            Email = cliente.Email,
+            Telefone = cliente.Telefone
+            // Mapeie outros campos conforme necessário
+        }).ToList();
+    }
 }

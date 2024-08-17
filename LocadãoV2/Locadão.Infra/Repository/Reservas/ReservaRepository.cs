@@ -58,5 +58,14 @@ namespace Locadão.Infra.Repository.Reservas
             }
             return reserva;
         }
+
+        public async Task<IEnumerable<Reserva>> GetReservasDisponiveisAsync()
+        {
+            return await _context.Reservas
+                                 .Where(r => r.Status == "Confirmada")
+                                 .Include(r => r.Cliente)
+                                 .Include(r => r.Veiculo)
+                                 .ToListAsync();
+        }
     }
 }

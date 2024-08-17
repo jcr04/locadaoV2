@@ -22,9 +22,9 @@ namespace Locadão.Application.Queries
             {
                 Id = reserva.Id,
                 ClienteId = reserva.ClienteId,
-                ClienteNome = reserva.Cliente.Nome, // Supondo que a entidade Cliente esteja carregada
+                ClienteNome = reserva.Cliente.Nome,
                 VeiculoId = reserva.VeiculoId,
-                VeiculoDescricao = $"{reserva.Veiculo.Marca} {reserva.Veiculo.Modelo}", // Supondo que a entidade Veiculo esteja carregada
+                VeiculoDescricao = $"{reserva.Veiculo.Marca} {reserva.Veiculo.Modelo}",
                 DataInicio = reserva.DataInicio,
                 DataFim = reserva.DataFim,
                 Status = reserva.Status
@@ -38,15 +38,28 @@ namespace Locadão.Application.Queries
             {
                 Id = reserva.Id,
                 ClienteId = reserva.ClienteId,
-                ClienteNome = reserva.Cliente.Nome, // Supondo que a entidade Cliente esteja carregada
+                ClienteNome = reserva.Cliente.Nome,
                 VeiculoId = reserva.VeiculoId,
-                VeiculoDescricao = $"{reserva.Veiculo.Marca} {reserva.Veiculo.Modelo}", // Supondo que a entidade Veiculo esteja carregada
+                VeiculoDescricao = $"{reserva.Veiculo.Marca} {reserva.Veiculo.Modelo}",
                 DataInicio = reserva.DataInicio,
                 DataFim = reserva.DataFim,
                 Status = reserva.Status
             }).ToList();
         }
-
-        // Implementar outros métodos conforme necessário
+        public async Task<IEnumerable<ReservaDTO>> GetReservasDisponiveisAsync()
+        {
+            var reservas = await _reservaRepository.GetReservasDisponiveisAsync();
+            return reservas.Select(reserva => new ReservaDTO
+            {
+                Id = reserva.Id,
+                ClienteId = reserva.ClienteId,
+                ClienteNome = reserva.Cliente.Nome,
+                VeiculoId = reserva.VeiculoId,
+                VeiculoDescricao = $"{reserva.Veiculo.Marca} {reserva.Veiculo.Modelo}",
+                DataInicio = reserva.DataInicio,
+                DataFim = reserva.DataFim,
+                Status = reserva.Status
+            }).ToList();
+        }
     }
 }

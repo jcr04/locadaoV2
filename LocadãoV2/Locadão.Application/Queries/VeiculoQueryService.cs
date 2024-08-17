@@ -31,5 +31,19 @@ namespace Locadão.Application.Queries
                 // Mapeie outras propriedades conforme necessário
             };
         }
+        public async Task<IEnumerable<VeiculoDTO>> GetVeiculosDisponiveisAsync()
+        {
+            var veiculos = await _veiculoRepository.GetVeiculosDisponiveisAsync();
+            return veiculos.Select(veiculo => new VeiculoDTO
+            {
+                Id = veiculo.Id,
+                Marca = veiculo.Marca,
+                Modelo = veiculo.Modelo,
+                AnoFabricacao = veiculo.AnoFabricacao,
+                Placa = veiculo.Placa,
+                Cor = veiculo.Cor,
+                AdaptadoParaPCD = veiculo.AdaptadoParaPCD
+            }).ToList();
+        }
     }
 }

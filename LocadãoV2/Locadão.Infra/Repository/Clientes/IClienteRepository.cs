@@ -12,5 +12,6 @@ namespace Locadão.Infra.Repository.Clientes
         Task<Cliente> AddAsync(Cliente cliente);
         Task UpdateAsync(Cliente cliente);
         Task DeleteAsync(Guid id);
+        Task<IEnumerable<Cliente>> GetClientesDisponiveisAsync();
     }
 }

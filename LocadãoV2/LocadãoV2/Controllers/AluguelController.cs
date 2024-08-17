@@ -50,4 +50,11 @@ public class AlugueisController : ControllerBase
 
         return Ok(aluguelDto);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAlugueisDisponiveis()
+    {
+        var alugueis = await _aluguelQueryService.GetAlugueisDisponiveisAsync();
+        return Ok(alugueis);
+    }
 }

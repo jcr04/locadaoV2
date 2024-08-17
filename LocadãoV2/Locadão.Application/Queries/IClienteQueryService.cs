@@ -6,5 +6,6 @@ namespace Locadão.Application.Queries
     public interface IClienteQueryService
     {
         Task<ClienteDTO> GetClienteByIdAsync(Guid id);
+        Task<IEnumerable<ClienteDTO>> GetClientesDisponiveisAsync();
     }
 }

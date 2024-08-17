@@ -82,5 +82,11 @@ namespace Locadão.Infra.Repository.Veiculos
             return !reservasExistem && !alugueisExistem;
         }
 
+        public async Task<IEnumerable<Veiculo>> GetVeiculosDisponiveisAsync()
+        {
+            return await _context.Veiculos
+                                 .ToListAsync();
+        }
+
     }
 }

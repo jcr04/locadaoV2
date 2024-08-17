@@ -48,6 +48,13 @@ public class ClientesController : ControllerBase
         return Ok(clienteDto);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetClientesDisponiveis()
+    {
+        var clientes = await _clienteQueryService.GetClientesDisponiveisAsync();
+        return Ok(clientes);
+    }
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateClienteCommand command)

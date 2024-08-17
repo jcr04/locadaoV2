@@ -11,5 +11,6 @@ namespace Locadão.Application.Queries
     public interface IVeiculoQueryService
     {
         Task<VeiculoDTO> GetVeiculoByIdAsync(Guid id);
+        Task<IEnumerable<VeiculoDTO>> GetVeiculosDisponiveisAsync();
     }
 }

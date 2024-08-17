@@ -48,6 +48,13 @@ public class ReservasController : ControllerBase
         return Ok(reserva);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetReservasDisponiveis()
+    {
+        var reservas = await _reservaQueryService.GetReservasDisponiveisAsync();
+        return Ok(reservas);
+    }
+
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateReservaCommand command)
     {

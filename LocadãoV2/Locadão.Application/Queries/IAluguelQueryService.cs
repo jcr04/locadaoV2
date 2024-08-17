@@ -9,5 +9,6 @@ namespace Locadão.Application.Queries
     public interface IAluguelQueryService
     {
         Task<AluguelDTO> GetAluguelByIdAsync(Guid id);
+        Task<List<AluguelDTO>> GetAlugueisDisponiveisAsync();
     }
 }

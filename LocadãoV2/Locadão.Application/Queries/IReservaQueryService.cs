@@ -1,4 +1,5 @@
-﻿using Locadão.Domain.models.DTOs.Locadão.Domain.models.DTOs;
+﻿using Locadão.Domain.models;
+using Locadão.Domain.models.DTOs.Locadão.Domain.models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace Locadão.Application.Queries
     {
         Task<ReservaDTO> GetReservaByIdAsync(Guid id);
         Task<IEnumerable<ReservaDTO>> GetReservasByClienteIdAsync(Guid clienteId);
-        // Outros métodos conforme necessário
+        Task<IEnumerable<ReservaDTO>> GetReservasDisponiveisAsync();
     }
 }

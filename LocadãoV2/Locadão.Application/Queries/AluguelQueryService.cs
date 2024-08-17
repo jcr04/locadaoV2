@@ -29,5 +29,18 @@ public class AluguelQueryService : IAluguelQueryService
             Agencia = aluguel.Agencia.Nome
         };
     }
+    public async Task<List<AluguelDTO>> GetAlugueisDisponiveisAsync()
+    {
+        var alugueis = await _aluguelRepository.GetAlugueisDisponiveisAsync();
+        return alugueis.Select(aluguel => new AluguelDTO
+        {
+            Id = aluguel.Id,
+            DataInicio = aluguel.DataInicio,
+            DataFim = aluguel.DataFim,
+            Valor = aluguel.Valor,
+            Status = aluguel.Status,
+            Agencia = aluguel.Agencia.Nome
+        }).ToList();
+    }
 }
 

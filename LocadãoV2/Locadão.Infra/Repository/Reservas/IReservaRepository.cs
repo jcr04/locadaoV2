@@ -11,7 +11,8 @@ namespace Locadão.Infra.Repository.Reservas
         Task CancelarReservaAsync(Guid reservaId);
 
         Task<Reserva> UpdateReservaAsync(Reserva updatedReserva);
-        // Outros métodos conforme necessário
+
+        Task<IEnumerable<Reserva>> GetReservasDisponiveisAsync();
     }
 
 }

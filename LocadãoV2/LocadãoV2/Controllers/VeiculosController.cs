@@ -42,6 +42,13 @@ namespace Locadão.Api.Controllers
             return Ok(veiculoDto);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetVeiculosDisponiveis()
+        {
+            var veiculos = await _veiculoQueryService.GetVeiculosDisponiveisAsync();
+            return Ok(veiculos);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateVeiculoCommand command)
         {

@@ -44,5 +44,12 @@ namespace Locadão.Infra.Repository.Clientes
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<IEnumerable<Cliente>> GetClientesDisponiveisAsync()
+        {
+            return await _context.Clientes
+                                 .Where(c => c.TemCNH == true)
+                                 .ToListAsync();
+        }
     }
 }
