@@ -36,7 +36,7 @@ public class AluguelRepository : IAluguelRepository
                              .Include(a => a.Cliente)
                              .Include(a => a.Veiculo)
                              .Include(a => a.Agencia)
-                             .Where(a => a.Status == "Disponível")
+                             .Where(a => a.Status == "Disponível" || a.Status == "Ativo")
                              .ToListAsync();
     }
 

@@ -1,4 +1,5 @@
-﻿using Locadão.Infra.Repository.Alugueis;
+﻿using Locadão.Domain.models.DTOs;
+using Locadão.Infra.Repository.Alugueis;
 
 namespace Locadão.Application.Queries;
 
@@ -26,7 +27,14 @@ public class AluguelQueryService : IAluguelQueryService
             DataFim = aluguel.DataFim,
             Valor = aluguel.Valor,
             Status = aluguel.Status,
-            Agencia = aluguel.Agencia.Nome
+            Agencia = aluguel.Agencia.Nome,
+            Veiculo = new VeiculoDTO
+            {
+                Id = aluguel.Veiculo.Id,
+                Marca = aluguel.Veiculo.Marca,
+                Modelo = aluguel.Veiculo.Modelo,
+                Placa = aluguel.Veiculo.Placa,
+            },
         };
     }
     public async Task<List<AluguelDTO>> GetAlugueisDisponiveisAsync()
@@ -39,7 +47,14 @@ public class AluguelQueryService : IAluguelQueryService
             DataFim = aluguel.DataFim,
             Valor = aluguel.Valor,
             Status = aluguel.Status,
-            Agencia = aluguel.Agencia.Nome
+            Agencia = aluguel.Agencia.Nome,
+            Veiculo = new VeiculoDTO
+            {
+                Id = aluguel.Veiculo.Id,
+                Marca = aluguel.Veiculo.Marca,
+                Modelo = aluguel.Veiculo.Modelo,
+                Placa = aluguel.Veiculo.Placa,
+            },
         }).ToList();
     }
 }
