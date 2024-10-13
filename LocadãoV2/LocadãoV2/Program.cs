@@ -18,15 +18,10 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Adiciona os serviços ao container.
         builder.Services.AddControllers();
 
-        // Configura o DbContext
         builder.Services.AddDbContext<LocadaoDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-        // Adiciona os demais serviços necessários
-        // builder.Services.AddScoped, .AddTransient, .AddSingleton, etc.
         
         //Cliente
         builder.Services.AddTransient<ICommandHandler<CreateClienteCommand>, CreateClienteCommandHandler>();
@@ -70,7 +65,6 @@ internal class Program
             options.HttpsPort = 44351;
         });
 
-        // Adiciona o CORS
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowAllOrigins",
@@ -88,7 +82,6 @@ internal class Program
         app.UseSwaggerUI();
         app.UseCors("AllowAllOrigins");
 
-        // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Error");
