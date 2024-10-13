@@ -1,8 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using System;
 using locadao.Infrastructure;
 using Locadao.Application.Interfaces.Commands;
 using Locadão.Infra.Repository.Clientes;
