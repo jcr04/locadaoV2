@@ -67,12 +67,11 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        // adiciona suporte a https
 
         builder.Services.AddHttpsRedirection(options =>
         {
             options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-            options.HttpsPort = 44351; // Porta SSL que você mencionou
+            options.HttpsPort = 44351;
         });
 
         // Adiciona o CORS
